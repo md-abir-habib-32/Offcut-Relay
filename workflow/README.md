@@ -41,6 +41,10 @@ node workflow/evidence-agent.cjs "Why did nearest-first miss the uniform order?"
 
 The graph distinguishes a model selection from a search fallback. The public page includes the recorded synthetic test outcomes, including incorrect selections. Model weights and binaries are distributed by their respective projects.
 
+## Offline agent tool contract
+
+Install `workflow/requirements-agents.txt` into a separate evaluation environment and run `python3 -m workflow.agent_contract_eval` from the repository root. The two frameworks dispatch the real evidence lookup tool. Their model responses are scripted so the check measures tool routing and result handling without making a network call or drawing conclusions about model quality. The report in `agent-contract-results.json` records the three known evidence results and one out-of-scope result for each framework.
+
 ## n8n fixture test
 
 With the local FastAPI service on port 8765, use a local n8n instance to import `workflow/n8n-inventory.json` and execute its Manual sample trigger. The included workflow posts the sample CSV to the planner. Two executions were checked against the SQLite result, which stored one report and showed 121 kg versus 86 kg nearest-first. The FastAPI intake route can also accept a real operator-provided file from a local client.

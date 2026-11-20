@@ -1,0 +1,55 @@
+{
+  "mode": "Scripted model responses, real framework tool dispatch, no network inference",
+  "frameworks": {
+    "pydantic-ai-slim": {
+      "version": "0.0.55",
+      "cases": [
+        {
+          "question": "Why did nearest-first miss the uniform order?",
+          "expected": "nearest",
+          "observed": "nearest"
+        },
+        {
+          "question": "What happened when the cutoff was tighter?",
+          "expected": "rush",
+          "observed": "rush"
+        },
+        {
+          "question": "Was the forecast tested in the field?",
+          "expected": "validation",
+          "observed": "validation"
+        },
+        {
+          "question": "astronomy galactic photon telescope",
+          "expected": "no_evidence",
+          "observed": "no_evidence"
+        }
+      ]
+    },
+    "smolagents": {
+      "version": "1.24.0",
+      "cases": [
+        {
+          "question": "Why did nearest-first miss the uniform order?",
+          "expected": "nearest",
+          "observed": "nearest"
+        },
+        {
+          "question": "What happened when the cutoff was tighter?",
+          "expected": "rush",
+          "observed": "rush"
+        },
+        {
+          "question": "Was the forecast tested in the field?",
+          "expected": "validation",
+          "observed": "validation"
+        },
+        {
+          "question": "astronomy galactic photon telescope",
+          "expected": "no_evidence",
+          "observed": "no_evidence"
+        }
+      ]
+    }
+  }
+}
