@@ -1,0 +1,97 @@
+{
+  "name": "Offcut Relay inventory report",
+  "id": "OffcutRelayWorkflow",
+  "active": false,
+  "nodes": [
+    {
+      "name": "Manual sample",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        0,
+        -90
+      ],
+      "id": "ef1472da-22f9-4de0-bd2d-7b479b73cb57",
+      "parameters": {}
+    },
+    {
+      "name": "Sample inventory",
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        240,
+        -90
+      ],
+      "id": "8a9bc1a9-36e1-48d6-aebc-ae165ff8d076",
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "47198d35-7304-4cf7-ade4-8a4b767d6e55",
+              "name": "format",
+              "value": "csv",
+              "type": "string"
+            },
+            {
+              "id": "60489882-b511-4daf-9298-871f0fb09c57",
+              "name": "text",
+              "value": "kind,id,name,fabric,color,kg,ready,deadline,km\nlot,L01,Tongi Knit,cotton,navy,38,9,,\nlot,L02,Bhawal Textiles,cotton,navy,26,10,,\nlot,L03,Konabari Mill,denim,indigo,23,9,,\nlot,L04,Board Bazar Knit,jersey,gray,20,11,,\nlot,L05,Joydebpur Stitch,cotton,white,32,10,,\norder,O01,Tongi Bag Studio,cotton,navy,24,,14,2|5|12|8|10\norder,O02,Bhawal Uniforms,cotton,navy,35,,16,5|3|9|11|7\norder,O03,Gazipur Repair Hub,denim,indigo,16,,15,8|7|4|10|6\norder,O04,College Road Tailors,jersey,gray,18,,13,8|11|6|7|4\norder,O05,Kapasia Home Goods,cotton,white,28,,12,13|12|16|15|23\n",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      }
+    },
+    {
+      "name": "Validate and compare",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.2,
+      "position": [
+        520,
+        0
+      ],
+      "id": "95317934-5863-44e9-b777-23ce1f0fef55",
+      "parameters": {
+        "method": "POST",
+        "url": "http://127.0.0.1:8765/reports",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ $json.body ?? $json }}",
+        "options": {
+          "timeout": 15000
+        }
+      }
+    }
+  ],
+  "connections": {
+    "Manual sample": {
+      "main": [
+        [
+          {
+            "node": "Sample inventory",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Sample inventory": {
+      "main": [
+        [
+          {
+            "node": "Validate and compare",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "settings": {
+    "executionOrder": "v1",
+    "saveDataSuccessExecution": "none",
+    "saveDataErrorExecution": "none",
+    "saveManualExecutions": false
+  }
+}

@@ -1,0 +1,28 @@
+{
+  "runtime": "Ollama 0.40.16",
+  "model": "qwen2.5-0.5b",
+  "matched": 2,
+  "runs": [
+    {
+      "question": "Why did nearest-first miss the uniform order?",
+      "expected": "nearest",
+      "selected": "nearest",
+      "source": "/docs/#evidence",
+      "seconds": 3.146
+    },
+    {
+      "question": "Konabari Mill",
+      "expected": "rush",
+      "selected": "rush",
+      "source": "/docs/#evidence",
+      "seconds": 0.448
+    },
+    {
+      "question": "What happens to a JSON upload?",
+      "expected": "privacy",
+      "selected": "nearest",
+      "source": "/docs/#evidence",
+      "seconds": 1.062
+    }
+  ]
+}

@@ -1,0 +1,121 @@
+{
+  "lots": [
+    {
+      "id": "L01",
+      "source": "Tongi Knit",
+      "fabric": "cotton",
+      "color": "navy",
+      "kg": 38,
+      "ready": 9
+    },
+    {
+      "id": "L02",
+      "source": "Bhawal Textiles",
+      "fabric": "cotton",
+      "color": "navy",
+      "kg": 26,
+      "ready": 10
+    },
+    {
+      "id": "L03",
+      "source": "Konabari Mill",
+      "fabric": "denim",
+      "color": "indigo",
+      "kg": 23,
+      "ready": 9
+    },
+    {
+      "id": "L04",
+      "source": "Board Bazar Knit",
+      "fabric": "jersey",
+      "color": "gray",
+      "kg": 20,
+      "ready": 11
+    },
+    {
+      "id": "L05",
+      "source": "Joydebpur Stitch",
+      "fabric": "cotton",
+      "color": "white",
+      "kg": 32,
+      "ready": 10
+    }
+  ],
+  "orders": [
+    {
+      "id": "O01",
+      "shop": "Tongi Bag Studio",
+      "fabric": "cotton",
+      "color": "navy",
+      "kg": 24,
+      "deadline": 14,
+      "km": [
+        2,
+        5,
+        12,
+        8,
+        10
+      ]
+    },
+    {
+      "id": "O02",
+      "shop": "Bhawal Uniforms",
+      "fabric": "cotton",
+      "color": "navy",
+      "kg": 35,
+      "deadline": 16,
+      "km": [
+        5,
+        3,
+        9,
+        11,
+        7
+      ]
+    },
+    {
+      "id": "O03",
+      "shop": "Gazipur Repair Hub",
+      "fabric": "denim",
+      "color": "indigo",
+      "kg": 16,
+      "deadline": 15,
+      "km": [
+        8,
+        7,
+        4,
+        10,
+        6
+      ]
+    },
+    {
+      "id": "O04",
+      "shop": "College Road Tailors",
+      "fabric": "jersey",
+      "color": "gray",
+      "kg": 18,
+      "deadline": 13,
+      "km": [
+        8,
+        11,
+        6,
+        7,
+        4
+      ]
+    },
+    {
+      "id": "O05",
+      "shop": "Kapasia Home Goods",
+      "fabric": "cotton",
+      "color": "white",
+      "kg": 28,
+      "deadline": 12,
+      "km": [
+        13,
+        12,
+        16,
+        15,
+        23
+      ]
+    }
+  ]
+}

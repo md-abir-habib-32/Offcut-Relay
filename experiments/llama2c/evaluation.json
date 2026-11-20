@@ -1,0 +1,69 @@
+{
+  "runtime": "llama2.c",
+  "model": "stories260K.bin",
+  "cases": [
+    {
+      "question": "Why did nearest-first miss the uniform order?",
+      "expected": "nearest",
+      "retrieval": "nearest",
+      "reranked": "validation",
+      "ranked": [
+        {
+          "id": "validation",
+          "mean_token_nll": 3.61980391
+        },
+        {
+          "id": "pilot",
+          "mean_token_nll": 4.19129975
+        },
+        {
+          "id": "nearest",
+          "mean_token_nll": 4.47119934
+        }
+      ]
+    },
+    {
+      "question": "What happened when the cutoff was tighter?",
+      "expected": "rush",
+      "retrieval": "rush",
+      "reranked": "validation",
+      "ranked": [
+        {
+          "id": "validation",
+          "mean_token_nll": 3.62880493
+        },
+        {
+          "id": "eligibility",
+          "mean_token_nll": 3.77799521
+        },
+        {
+          "id": "rush",
+          "mean_token_nll": 4.88238987
+        }
+      ]
+    },
+    {
+      "question": "Was the forecast tested in the field?",
+      "expected": "validation",
+      "retrieval": "validation",
+      "reranked": "validation",
+      "ranked": [
+        {
+          "id": "validation",
+          "mean_token_nll": 3.64169224
+        },
+        {
+          "id": "pilot",
+          "mean_token_nll": 4.21727137
+        },
+        {
+          "id": "rush",
+          "mean_token_nll": 4.90586214
+        }
+      ]
+    }
+  ],
+  "retrieval_matches": 3,
+  "reranked_matches": 1,
+  "out_of_scope_abstains": true
+}

@@ -1,0 +1,126 @@
+{
+  "runtime": "llama.cpp CPU",
+  "data": "synthetic evidence cases",
+  "models": [
+    {
+      "model": "smollm2-135m",
+      "matched": 3,
+      "runs": [
+        {
+          "question": "Why did nearest-first miss the uniform order?",
+          "expected": "nearest",
+          "selected": "nearest",
+          "source": "/docs/#evidence",
+          "grounded": true,
+          "seconds": 1.072
+        },
+        {
+          "question": "What happened when the cutoff was tighter?",
+          "expected": "rush",
+          "selected": "rush",
+          "source": "/docs/#evidence",
+          "grounded": true,
+          "seconds": 0.914
+        },
+        {
+          "question": "Was the forecast tested in the field?",
+          "expected": "validation",
+          "selected": "validation",
+          "source": "/docs/#pilot",
+          "grounded": true,
+          "seconds": 1.002
+        }
+      ]
+    },
+    {
+      "model": "smollm2-360m",
+      "matched": 2,
+      "runs": [
+        {
+          "question": "Why did nearest-first miss the uniform order?",
+          "expected": "nearest",
+          "selected": "nearest",
+          "source": "/docs/#evidence",
+          "grounded": true,
+          "seconds": 1.581
+        },
+        {
+          "question": "What happened when the cutoff was tighter?",
+          "expected": "rush",
+          "selected": "validation",
+          "source": "/docs/#pilot",
+          "grounded": true,
+          "seconds": 1.357
+        },
+        {
+          "question": "Was the forecast tested in the field?",
+          "expected": "validation",
+          "selected": "validation",
+          "source": "/docs/#pilot",
+          "grounded": true,
+          "seconds": 1.428
+        }
+      ]
+    },
+    {
+      "model": "qwen2.5-0.5b",
+      "matched": 3,
+      "runs": [
+        {
+          "question": "Why did nearest-first miss the uniform order?",
+          "expected": "nearest",
+          "selected": "nearest",
+          "source": "/docs/#evidence",
+          "grounded": true,
+          "seconds": 1.726
+        },
+        {
+          "question": "What happened when the cutoff was tighter?",
+          "expected": "rush",
+          "selected": "rush",
+          "source": "/docs/#evidence",
+          "grounded": true,
+          "seconds": 1.514
+        },
+        {
+          "question": "Was the forecast tested in the field?",
+          "expected": "validation",
+          "selected": "validation",
+          "source": "/docs/#pilot",
+          "grounded": true,
+          "seconds": 1.388
+        }
+      ]
+    },
+    {
+      "model": "gemma3-270m",
+      "matched": 1,
+      "runs": [
+        {
+          "question": "Why did nearest-first miss the uniform order?",
+          "expected": "nearest",
+          "selected": "validation",
+          "source": "/docs/#pilot",
+          "grounded": true,
+          "seconds": 0.58
+        },
+        {
+          "question": "What happened when the cutoff was tighter?",
+          "expected": "rush",
+          "selected": "validation",
+          "source": "/docs/#pilot",
+          "grounded": true,
+          "seconds": 0.678
+        },
+        {
+          "question": "Was the forecast tested in the field?",
+          "expected": "validation",
+          "selected": "validation",
+          "source": "/docs/#pilot",
+          "grounded": true,
+          "seconds": 0.607
+        }
+      ]
+    }
+  ]
+}

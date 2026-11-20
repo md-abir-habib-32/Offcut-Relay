@@ -1,0 +1,11 @@
+kind,id,name,fabric,color,kg,ready,deadline,km
+lot,L01,Tongi Knit,cotton,navy,38,9,,
+lot,L02,Bhawal Textiles,cotton,navy,26,10,,
+lot,L03,Konabari Mill,denim,indigo,23,9,,
+lot,L04,Board Bazar Knit,jersey,gray,20,11,,
+lot,L05,Joydebpur Stitch,cotton,white,32,10,,
+order,O01,Tongi Bag Studio,cotton,navy,24,,14,2|5|12|8|10
+order,O02,Bhawal Uniforms,cotton,navy,35,,16,5|3|9|11|7
+order,O03,Gazipur Repair Hub,denim,indigo,16,,15,8|7|4|10|6
+order,O04,College Road Tailors,jersey,gray,18,,13,8|11|6|7|4
+order,O05,Kapasia Home Goods,cotton,white,28,,12,13|12|16|15|23

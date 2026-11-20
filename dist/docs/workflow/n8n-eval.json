@@ -1,0 +1,8 @@
+{
+  "runtime": "n8n 2.48.7",
+  "execution": "manual trigger with CSV fixture",
+  "runs": 2,
+  "stored_reports": 1,
+  "planned_kg": 121,
+  "nearest_first_kg": 86
+}
