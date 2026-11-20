@@ -3,6 +3,12 @@
 import json
 from importlib.metadata import version
 
+from agents import Agent as OpenAIAgent, Model as OpenAIModel, ModelResponse as OpenAIResponse
+from agents import RunConfig, Runner, Usage, function_tool
+from agno.agent import Agent as AgnoAgent
+from agno.models.base import Model as AgnoModel
+from agno.models.response import ModelResponse as AgnoResponse
+from openai.types.responses import ResponseFunctionToolCall, ResponseOutputMessage, ResponseOutputText
 from pydantic_ai import Agent
 from pydantic_ai.messages import ModelResponse, TextPart, ToolCallPart, ToolReturnPart
 from pydantic_ai.models.function import FunctionModel
@@ -65,6 +71,64 @@ def smolagents_replay(question: str) -> str:
     return str(agent.run(question))
 
 
+class OpenAIFixtureModel(OpenAIModel):
+    def __init__(self, question: str):
+        self.question = question
+
+    async def get_response(self, system_instructions, input, *args, **kwargs):
+        for item in reversed(input) if isinstance(input, list) else ():
+            if isinstance(item, dict) and item.get("type") == "function_call_output":
+                message = ResponseOutputMessage(
+                    id="fixture-answer", status="completed", role="assistant", type="message",
+                    content=[ResponseOutputText(type="output_text", text=item["output"], annotations=[])],
+                )
+                return OpenAIResponse([message], Usage(), None)
+        call = ResponseFunctionToolCall(
+            type="function_call", id="fixture-tool", call_id="evidence-1", name="evidence",
+            arguments=json.dumps({"question": self.question}),
+        )
+        return OpenAIResponse([call], Usage(), None)
+
+    def stream_response(self, *args, **kwargs):
+        raise NotImplementedError("Only non-streaming fixture tests are supported")
+
+
+def openai_replay(question: str) -> str:
+    agent = OpenAIAgent(name="Offcut evidence replay", model=OpenAIFixtureModel(question),
+                        tools=[function_tool(evidence)])
+    result = Runner.run_sync(agent, question, max_turns=2, run_config=RunConfig(tracing_disabled=True))
+    return result.final_output
+
+
+class AgnoFixtureModel(AgnoModel):
+    def invoke(self, messages, **kwargs):
+        if messages[-1].role == "tool":
+            return AgnoResponse(content=messages[-1].get_content_string())
+        return AgnoResponse(tool_calls=[{
+            "id": "fixture-evidence", "type": "function",
+            "function": {"name": "evidence", "arguments": json.dumps({"question": messages[-1].content})},
+        }])
+
+    @staticmethod
+    def parse_provider_response(response, **kwargs):
+        return response
+
+    def ainvoke(self, *args, **kwargs):
+        raise NotImplementedError("This evaluator runs synchronously")
+
+    def invoke_stream(self, *args, **kwargs):
+        raise NotImplementedError("This evaluator does not stream")
+
+    ainvoke_stream = invoke_stream
+    parse_provider_response_delta = invoke_stream
+
+
+def agno_replay(question: str) -> str:
+    agent = AgnoAgent(model=AgnoFixtureModel(id="offline-tool-contract"), tools=[evidence],
+                      telemetry=False, monitoring=False, tool_call_limit=1)
+    return agent.run(question).content
+
+
 def evaluate() -> dict:
     cases = [*CASES, ("astronomy galactic photon telescope", "no_evidence")]
     return {
@@ -74,7 +138,10 @@ def evaluate() -> dict:
                 {"question": question, "expected": expected, "observed": replay(question)}
                 for question, expected in cases
             ]}
-            for distribution, replay in (("pydantic-ai-slim", pydantic_replay), ("smolagents", smolagents_replay))
+            for distribution, replay in (
+                ("pydantic-ai-slim", pydantic_replay), ("smolagents", smolagents_replay),
+                ("openai-agents", openai_replay), ("agno", agno_replay),
+            )
         },
     }
 

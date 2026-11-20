@@ -43,7 +43,7 @@ The graph distinguishes a model selection from a search fallback. The public pag
 
 ## Offline agent tool contract
 
-Install `workflow/requirements-agents.txt` into a separate evaluation environment and run `python3 -m workflow.agent_contract_eval` from the repository root. The two frameworks dispatch the real evidence lookup tool. Their model responses are scripted so the check measures tool routing and result handling without making a network call or drawing conclusions about model quality. The report in `agent-contract-results.json` records the three known evidence results and one out-of-scope result for each framework.
+Install `workflow/requirements-agents.txt` into a separate evaluation environment and run `python3 -m workflow.agent_contract_eval` from the repository root. All four frameworks dispatch the real evidence lookup tool. Their model responses are scripted so the check measures tool routing and result handling without making a network call or drawing conclusions about model quality. The report in `agent-contract-results.json` records the three known evidence results and one out-of-scope result for each framework.
 
 ## n8n fixture test
 

@@ -50,6 +50,56 @@
           "observed": "no_evidence"
         }
       ]
+    },
+    "openai-agents": {
+      "version": "0.0.19",
+      "cases": [
+        {
+          "question": "Why did nearest-first miss the uniform order?",
+          "expected": "nearest",
+          "observed": "nearest"
+        },
+        {
+          "question": "What happened when the cutoff was tighter?",
+          "expected": "rush",
+          "observed": "rush"
+        },
+        {
+          "question": "Was the forecast tested in the field?",
+          "expected": "validation",
+          "observed": "validation"
+        },
+        {
+          "question": "astronomy galactic photon telescope",
+          "expected": "no_evidence",
+          "observed": "no_evidence"
+        }
+      ]
+    },
+    "agno": {
+      "version": "1.5.8",
+      "cases": [
+        {
+          "question": "Why did nearest-first miss the uniform order?",
+          "expected": "nearest",
+          "observed": "nearest"
+        },
+        {
+          "question": "What happened when the cutoff was tighter?",
+          "expected": "rush",
+          "observed": "rush"
+        },
+        {
+          "question": "Was the forecast tested in the field?",
+          "expected": "validation",
+          "observed": "validation"
+        },
+        {
+          "question": "astronomy galactic photon telescope",
+          "expected": "no_evidence",
+          "observed": "no_evidence"
+        }
+      ]
     }
   }
 }
